@@ -3,33 +3,33 @@ import java.util.ArrayList;
 public class Main {
     private static RAM ram = new RAM();
     private static Cache cache = new Cache();
-    private static Registros registros = new Registros();
-    private static TablaInformacion tabla = new TablaInformacion();
-    private static ArrayList<Informacion> proporcion = new ArrayList<>();
+    private static Registro registro = new Registro();
+    private static TablaDatos tabla = new TablaDatos();
+    private static ArrayList<Dato> proporcion = new ArrayList<>();
 
     public static void main(String[] args) {
         System.out.println(tabla.toString());
         tabla.setTabla(QuickSort(tabla.getTabla()));
         System.out.println(tabla.toString());
-        for (Informacion informacion : tabla.getTabla()) {
-            if (registros.almacenarInformacion(informacion)){
-                System.out.println(registros.toString());
-            } else if (cache.almacenarInformacion(informacion)) {
+        for (Dato dato : tabla.getTabla()) {
+            if (registro.almacenarInformacion(dato)){
+                System.out.println(registro.toString());
+            } else if (cache.almacenarInformacion(dato)) {
                 System.out.println(cache.toString());
-            } else if (ram.almacenarInformacion(informacion)){
+            } else if (ram.almacenarInformacion(dato)){
                 System.out.println(ram.toString());
             }
         }
     }
 
-    private static ArrayList QuickSort(ArrayList<Informacion> arreglo) {
+    private static ArrayList QuickSort(ArrayList<Dato> arreglo) {
         if(arreglo.size() > 1) {
             int pivote = arreglo.get(0).getAccesosPrevios();
-            ArrayList<Informacion> Mayor = new ArrayList<>();
-            ArrayList<Informacion> Menor = new ArrayList<>();
-            ArrayList<Informacion> Igual = new ArrayList<>();
+            ArrayList<Dato> Mayor = new ArrayList<>();
+            ArrayList<Dato> Menor = new ArrayList<>();
+            ArrayList<Dato> Igual = new ArrayList<>();
 
-            for (Informacion valor : arreglo) {
+            for (Dato valor : arreglo) {
                 if (valor.getAccesosPrevios() > pivote){
                     Mayor.add(valor);
                 } else if (valor.getAccesosPrevios() < pivote){

@@ -1,18 +1,20 @@
-import java.util.ArrayList;
-
 public class Cache {
-    private ArrayList registro;
-    private int espacio;
+    private Memoria l1;
+    private Memoria l2;
+    private Memoria l3;
 
     public Cache() {
-        this.espacio = 512;
-        this.registro = new ArrayList();
+        this.l1 = new Memoria(120);
+        this.l2 = new Memoria(480);
+        this.l3 = new Memoria(1920);
     }
 
-    public Boolean almacenarInformacion(Informacion informacion) {
-        if (informacion.getMemoria() <= espacio) {
-            espacio -= informacion.getMemoria();
-            registro.add(informacion);
+    public boolean almacenarInformacion(Dato dato) {
+        if (l1.almacenarInformacion(dato)){
+            return true;
+        } else if (l2.almacenarInformacion(dato)) {
+            return true;
+        } else if (l3.almacenarInformacion(dato)){
             return true;
         } else {
             return false;
@@ -21,9 +23,10 @@ public class Cache {
 
     @Override
     public String toString() {
-        return "CACHE{" +
-                "registro=" + registro + "\n" +
-                ", espacio=" + espacio +
-                '}';
+        return "Cache {" + "\n"
+                + "  l1 = " + l1.toString() + "\n"
+                + ", l2 = " + l2.toString() + "\n"
+                + ", l3 = " + l3.toString() + "\n"
+                + '}';
     }
 }

@@ -1,8 +1,8 @@
-public class Informacion {
+public class Dato {
     private int memoria;
     private int accesosPrevios;
 
-    public Informacion(double memoria, double accesosPrevios) {
+    public Dato(double memoria, double accesosPrevios) {
         this.memoria = (int)memoria;
         this.accesosPrevios = (int)accesosPrevios;
     }
